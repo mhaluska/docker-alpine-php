@@ -31,7 +31,7 @@ sed -i -e "s/\(.*\)\(MaxConnectionsPerChild\)\(.*\)/\1\2\t$MPM_MAXCONN/g" $MPM_C
 ## PHP configucation update
 echo "Updating php configuration..."
 # Variables to allow adhoc change using docker env
-PHP_INI="/etc/php7/php.ini"
+PHP_INI="/etc/php5/php.ini"
 PHP_TZ="${PHP_TZ:-Europe/Prague}"
 PHP_POSTMAX="${PHP_POSTMAX:-10M}"
 PHP_UPLOADMAX="${PHP_UPLOADMAX:-8M}"
