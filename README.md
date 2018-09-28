@@ -1,6 +1,6 @@
 # Docker image based on Alpine with Apache2 and PHP
 
-Alpine image version: 3.8
+Alpine image version: 3.5
 
 ## Following environment variables can be used to customize this image
 
