@@ -2,16 +2,18 @@
 
 Alpine image version: 3.8
 
-## Following environment variables can be used to customize this image
+Source: [https://github.com/mhaluska/docker-alpine-php](https://github.com/mhaluska/docker-alpine-php)
 
-### MPM modification:
+### Following environment variables can be used to customize this image
+
+#### MPM modification:
 - MPM_START (StartServers, default 1)
 - MPM_MINSPARE (MinSpareServers, default 1)
 - MPM_MAXSPARE (MaxSpareServers, default 3)
 - MPM_MAXREQ (MaxRequestWorkers, default 15)
 - MPM_MAXCONN (MaxConnectionsPerChild, default 250)
 
-### PHP modification
+#### PHP modification
 - PHP_TZ (date.timezone, default Europe/Prague)
 - PHP_POSTMAX (post_max_size, default 10M)
 - PHP_UPLOADMAX (upload_max_filesize, default 8M)
