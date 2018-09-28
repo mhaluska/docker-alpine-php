@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.5
 MAINTAINER marek.haluska@gmail.com
 
 RUN addgroup -g 9999 -S apache && adduser -h /var/www -s /sbin/nologin -G apache -S -D -u 9999 apache && \
