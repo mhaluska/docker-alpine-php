@@ -1,7 +1,7 @@
 FROM alpine:3.7
 MAINTAINER marek.haluska@gmail.com
 
-RUN apk --no-cache add apache2 php7-apache2 php7-curl php7-gd php7-mysqli php7-openssl php7-pdo_mysql php7-zip \
+RUN apk --no-cache add shadow apache2 php7-apache2 php7-curl php7-gd php7-mysqli php7-openssl php7-pdo_mysql php7-zip \
     php7-ctype php7-xml php7-simplexml && \
     mkdir -p /run/apache2 && cd /etc/apache2/conf.d && rm -fv info.conf userdir.conf
 
