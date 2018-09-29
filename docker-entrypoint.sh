@@ -1,5 +1,16 @@
 #!/bin/sh
 
+## apache user UID & GID change
+if [ ! -z ${USER_UID+x} ]; then
+	echo "Updating apache uid to $USER_UID..."
+	usermod -u $USER_UID apache
+fi
+
+if [ ! -z ${USER_GID+x} ]; then
+	echo "Updating apache gid to $USER_GID..."
+	groupmod -g $USER_GID apache
+fi
+
 ## Apache2 configuration update
 echo "Updating apache2 configuration..."
 APACHE2_CONF="/etc/apache2/httpd.conf"
@@ -12,6 +23,7 @@ sed -i 's#ErrorLog logs/error.log#ErrorLog /dev/stderr#' $APACHE2_CONF
 sed -i 's#CustomLog logs/access.log#CustomLog /dev/stdout#' $APACHE2_CONF
 sed -i 's#LogFormat "%h#LogFormat "%{X-Forwarded-For}i#' $APACHE2_CONF
 # Performance and security customization
+sed -i 's#Listen 80#Listen 0.0.0.0:80#' $APACHE2_CONF
 sed -i 's#\#ServerName www.example.com:80#ServerName 0.0.0.0:80#' $APACHE2_CONF
 sed -i 's#ServerTokens OS#ServerTokens Prod#' $APACHE2_CONF
 sed -i 's#ServerSignature On#ServerSignature Off#' $APACHE2_CONF
@@ -49,6 +61,7 @@ sed -i -e "s/\(allow_url_fopen\s\?=\s\?\).*/\1$PHP_URLFOPEN/" $PHP_INI
 sed -i -e "s/\(max_execution_time\s\?=\s\?\).*/\1$PHP_EXECMAX/" $PHP_INI
 sed -i -e "s/\(max_input_time\s\?=\s\?\).*/\1$PHP_INPUTMAX/" $PHP_INI
 sed -i -e "s/\(memory_limit\s\?=\s\?\).*/\1$PHP_MEMLIMIT/" $PHP_INI
+sed -i -e "s/^\(error_reporting\s\?=\s\?\).*/\1E_ALL \& ~E_DEPRECATED \& ~E_STRICT \& ~E_NOTICE/" $PHP_INI
 sed -i -e "s/\(;\)\?\(error_log\s\?=\)\(.*\)\?/\2 \/dev\/stderr/" $PHP_INI
 if [ "$PHP_DISABLE_USERINI" = "1" ]; then
 	sed -i -e "s/\(;\)\?\(user_ini.filename\s\?=\)$/\2/" $PHP_INI
