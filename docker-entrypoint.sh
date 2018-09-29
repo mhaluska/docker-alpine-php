@@ -61,6 +61,7 @@ sed -i -e "s/\(allow_url_fopen\s\?=\s\?\).*/\1$PHP_URLFOPEN/" $PHP_INI
 sed -i -e "s/\(max_execution_time\s\?=\s\?\).*/\1$PHP_EXECMAX/" $PHP_INI
 sed -i -e "s/\(max_input_time\s\?=\s\?\).*/\1$PHP_INPUTMAX/" $PHP_INI
 sed -i -e "s/\(memory_limit\s\?=\s\?\).*/\1$PHP_MEMLIMIT/" $PHP_INI
+sed -i -e "s/^\(error_reporting\s\?=\s\?\).*/\1E_ALL \& ~E_DEPRECATED \& ~E_STRICT \& ~E_NOTICE/" $PHP_INI
 sed -i -e "s/\(;\)\?\(error_log\s\?=\)\(.*\)\?/\2 \/dev\/stderr/" $PHP_INI
 if [ "$PHP_DISABLE_USERINI" = "1" ]; then
 	sed -i -e "s/\(;\)\?\(user_ini.filename\s\?=\)$/\2/" $PHP_INI
