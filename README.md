@@ -6,6 +6,10 @@ Source: [https://github.com/mhaluska/docker-alpine-php](https://github.com/mhalu
 
 ### Following environment variables can be used to customize this image
 
+#### Change apache user UID and GID if defined:
+- USER_UID=123
+- USER_GID=321
+
 #### MPM modification:
 - MPM_START (StartServers, default 1)
 - MPM_MINSPARE (MinSpareServers, default 1)
