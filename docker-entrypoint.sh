@@ -1,5 +1,16 @@
 #!/bin/sh
 
+## apache user UID & GID change
+if [ ! -z ${USER_UID+x} ]; then
+	echo "Updating apache uid to $USER_UID..."
+	usermod -u $USER_UID apache
+fi
+
+if [ ! -z ${USER_GID+x} ]; then
+	ECHO "Updating apache gid to $USER_GID..."
+	groupmod -g $USER_GID apache
+fi
+
 ## Apache2 configuration update
 echo "Updating apache2 configuration..."
 APACHE2_CONF="/etc/apache2/httpd.conf"
