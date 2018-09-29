@@ -23,6 +23,8 @@ sed -i 's#ErrorLog logs/error.log#ErrorLog /dev/stderr#' $APACHE2_CONF
 sed -i 's#CustomLog logs/access.log#CustomLog /dev/stdout#' $APACHE2_CONF
 sed -i 's#LogFormat "%h#LogFormat "%{X-Forwarded-For}i#' $APACHE2_CONF
 # Performance and security customization
+sed -i 's#Listen 80#Listen 0.0.0.0:80#' $APACHE2_CONF
+sed -i 's#\#ServerName www.example.com:80#ServerName 0.0.0.0:80#' $APACHE2_CONF
 sed -i 's#ServerTokens OS#ServerTokens Prod#' $APACHE2_CONF
 sed -i 's#ServerSignature On#ServerSignature Off#' $APACHE2_CONF
 # Variables to allow adhoc change using docker env
