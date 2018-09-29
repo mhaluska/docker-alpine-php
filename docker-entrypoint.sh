@@ -7,7 +7,7 @@ if [ ! -z ${USER_UID+x} ]; then
 fi
 
 if [ ! -z ${USER_GID+x} ]; then
-	ECHO "Updating apache gid to $USER_GID..."
+	echo "Updating apache gid to $USER_GID..."
 	groupmod -g $USER_GID apache
 fi
 
