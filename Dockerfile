@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.9
 MAINTAINER marek.haluska@gmail.com
 
 RUN apk --no-cache add shadow apache2 php7-apache2 php7-curl php7-gd php7-mysqli php7-openssl php7-pdo_mysql php7-zip \
