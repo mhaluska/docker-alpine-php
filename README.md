@@ -1,6 +1,6 @@
 # Docker image based on Alpine with Apache2 and PHP
 
-Alpine image version: 3.8
+Alpine image version: 3.10
 
 Source: [https://github.com/mhaluska/docker-alpine-php](https://github.com/mhaluska/docker-alpine-php)
 
