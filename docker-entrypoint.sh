@@ -39,6 +39,11 @@ sed -i -e "s/\(.*\)\(MinSpareServers\)\(.*\)/\1\2\t$MPM_MINSPARE/g" $MPM_CONF
 sed -i -e "s/\(.*\)\(MaxSpareServers\)\(.*\)/\1\2\t$MPM_MAXSPARE/g" $MPM_CONF
 sed -i -e "s/\(.*\)\(MaxRequestWorkers\)\(.*\)/\1\2\t$MPM_MAXREQ/g" $MPM_CONF
 sed -i -e "s/\(.*\)\(MaxConnectionsPerChild\)\(.*\)/\1\2\t$MPM_MAXCONN/g" $MPM_CONF
+# Set env when running behind reverse proxy
+cat << EOF > /etc/apache2/conf.d/proxy.conf
+SetEnvIf X-Forwarded-Proto "https" HTTPS=on
+SetEnvIf X-Forwarded-Proto "https" SERVER_PORT=443
+EOF
 
 ## PHP configucation update
 echo "Updating php configuration..."
